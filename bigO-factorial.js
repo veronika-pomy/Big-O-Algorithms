@@ -4,7 +4,7 @@ const numberToCompute = 15;
 // n! = (n-1) * (n-1) * (n-3) * (n-4) * ... * 3 * 2 * 1
 // formula n! = n * (n-1)!
 
-// 
+// O(n) - because function gets called n number of times until it it's the base case, runtime is propotional to value of n in this case
 
 // using for loop, no recursion
 function findFactorial (input) {
