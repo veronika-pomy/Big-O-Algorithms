@@ -2,7 +2,7 @@ const arr = [1,2,3,4,5,6];
 
 // runtime complexity for nested loops is multipled
 // one input 
-// visualizing output for N = 4
+// visualizing output for N = 4 (i,j)
 // (0,1)(0,2)(0,3)(0,4)
 //      (1,2)(1,3)(1,4)
 //           (2,3)(2,4)
