@@ -41,7 +41,6 @@ function sortArrayOfStrings(array) {
 
 function sortEachString(string) {
 
-    console.log(string.length);
     if (string.length <= 1) {
         return string; 
     };
@@ -112,9 +111,3 @@ function sortEachString(string) {
     };
 
 console.log(sortArrayOfStrings(['abc', 'ffe', 'ewu', 'fuiesbvre'])); //=> [ 'abc', 'beefirsuv', 'eff', 'euw' ]
-// console.log(sortArrayOfStrings(['', 'ffe', 'ewu', 'fuiesbvre'])) //=> [ '', 'beefirsuv', 'eff', 'euw' ]
-// console.log(sortArrayOfStrings(['', 'ffe', 'ffea', 'ewu', 'fuiesbvre'])) //=> [ '', 'aeff', 'beefirsuv', 'eff', 'euw' ]
-// console.log(sortArrayOfStrings([])) //=> []
-// console.log(sortArrayOfStrings([''])) //=> ['']
-// console.log(sortArrayOfStrings(['cba'])) //=> ['abc']
-// console.log(sortArrayOfStrings(['bcad', 'bcad'])) //=> [ 'abcd', 'abcd' ]
