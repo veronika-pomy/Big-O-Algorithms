@@ -29,7 +29,8 @@ const result = quickSortStr(randomStr);
 
 console.log(result);
 
-// Big O - same as for arr case
+// Big O - same as for array case
+
 // Best case   -   O(n log n)
 // Worst Case -  O (n^2)
 // Average Case - O(n log n)
