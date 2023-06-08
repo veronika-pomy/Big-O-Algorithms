@@ -1,113 +1,102 @@
-// loop through the array, sort each string element
-// then sort the whole array, comparing each string to one another and swapping them if needed
+const arrayOfStrings = ['gfheowk', 'abababa', 'bababa', 'zzz', 'cx', '', 'c' , ''];
 
-// THERE IS AN ERROR ON LINE 40 string.length - reading undefined
+// Main function that sorts array of strings
+function sortArrayOfStrings(arr) {
+    let newArr = [];
 
-// 1. Sorting Array Of Strings
-function sortArrayOfStrings(array) {
-    // variable to hold a new array
-    let newArray = [];
+    // push a sorted string into the new array, do this for every string in the array
+    for (let i = 0; i < arr.length; i++) {
 
-    // builds a new array of sorted strings 
-    for (let i = 0; array.length; i++) {
-        // console.log(array[i]);
-        let sortedString = sortEachString(array[i]); // this step uses function to sort each string while iterating through the array 
-                                                    // for loop to iterate through the array is O(a) time complexity
-                                                    // sortEachString uses quick sort with best runtime of n log n, therefore
-                                                    // ortEachString has time complexity of s log s
-                                                    // since we do sorting of string for each array element the time complexity of this step is
-                                                    // O(a*s log s)
-       
-        newArray.push(sortedString);
+        let sortedString = quickSortString(arr[i]); // Helper function 1 to sort all strings
+
+        newArr.push(sortedString);
     }
 
-    newArray = sortArray(newArray); // this step sorts an array of sorted strings, contains a step to compare strings to one another 
-                                    // sortArray uses quick sort to sort the array - time complexity will be O(a log a)
-                                    // sortArray has a step where we compare each string to one another to find out which one is "bigger"
-                                    // that's compareSortedStrings, we need to go through each string to get them sorted
-                                    // runtime of compareSortedStrings is O(s)
-                                    // since we compare sorted strings for each iteration of sortArray, we multiply runtimes 
-                                    // time complexity of this step is O(s*a log a)
-
-    return newArray;
+    newArr = quickSortArr(newArr); // Helper function 2 (helper functino 3 within) to sort the new array by comparing strings
+    
+    // return sorted array of sorted strings
+    return newArr;
 };
 
-// Total time complexity - we add loop and sortEachString runtime with sortArray (compareSortedStrings inside of it) runtimes (they happen one after another)
+// Helper function #1 to use first letter as pivot to apply quick sort to sort a string
+function quickSortString (str) {
 
-// O(a*s log s + a*s log a) or O(a*s log a log s) runtime
+    // base case
+    if (str.length < 2) return str;
 
-// 2. Sorting Each String 
-    // use version of quick sort algorithm that takes first value as the pivot
+    let leftStr = '';
+    let rightStr = '';
 
-function sortEachString(string) {
+    const pivot = str[0];
 
-    if (string.length <= 1) {
-        return string; 
+    // iterate over each letter in a string except the pivot value and perform comparison
+    for (let i = 1; i < str.length; i++) {
+        (str[i] < pivot) ? leftStr += str[i] : rightStr += str[i];
     };
 
-    let left = '';
-    let right = '';
-
-    for (let i = 1; i < string.length; i++) {
-        if (string[i] >= string[0]) {
-            right += string[i];
-        } else {
-            left += string[i];
-        };
-    };
-
-    // use recursion
-    return sortEachString(left) + string[0] + sortEachString(right);
+    // use recursion to sort until an string has only one letter, then return
+    return quickSortString(leftStr) + pivot + quickSortString(rightStr);
 };
 
-// 3. Sorting Array
-    // use quick sort with pivot value as the first value
+// Helper function #2 to sort an array of strings using quick sort with firdt value as pivot
+function quickSortArr (arr) {
 
-    function sortArray(arr) {
+    if (arr.length < 2) return arr;
 
-        if (arr.length <= 1) {
-            return arr; 
-        }
-    
-        let left = [];
-        let right = [];
-    
-        for (let i = 1; i < arr.length; i++) {
-            if (compareSortedStrings (arr[i], arr[0])) {
-                right.push(arr[i]);
-            } else {
-                left.push(arr[i]);
-            };
-        };
-    
-        // use recursion
-        return [...sortArray(left), arr[0], ...sortArray(right)];
-    };
-    
-    // 3. Compare Sorted Strings 
-        // use a loop that iterates through the longer string and compares the characters in each string at a given index
-        // if one character is bigger than another -> return reesult
-        // do this for every string one by one
-    // this is plug into the function that sorts array
+    let leftArr = [];
+    let rightArr = [];
 
-    function compareSortedStrings (string1, string2) {
-        let longerString = string1.length >= string2.length ? string1 : string2;
+    const pivot = arr[0];
 
-        for (let i = 0; i < longerString.length; i++) {
-
-            // first two comparisons for when strings are empty - the logic compares longer string to shorter, that's how it knows what is false and what is true
-            if (!string1[i]) {
-                return false;
-            }
-            if (!string2[i]) {
-                return true;
-            }
-            if (string1[i] >= string2[i]) {
-                return true;
-            } else {
-                return false;
-            };
-        };
+    // compareStrings will evaluate each string against a pivot string
+        // if it is bigge than / equal to pivot, it goes into rightArr
+        // if it is smaller than pivot, it goes into leftArr
+    for (let i = 1; i < arr.length; i++) {
+        (compareStrings(arr[i],pivot)) ? rightArr.push(arr[i]) : leftArr.push(arr[i]);
     };
 
-console.log(sortArrayOfStrings(['abc', 'ffe', 'ewu', 'fuiesbvre'])); //=> [ 'abc', 'beefirsuv', 'eff', 'euw' ]
+    // use recursion to sort until an array has only one element, then return
+    return [...quickSortArr(leftArr), pivot, ...quickSortArr(rightArr)];
+};
+
+// Helper function #3 to compare strings
+    // Can't rely on one-step comparison strategy used for characters because the patterns of letters in a string can be different
+    
+    // Instead use stratgey of looping through the longer string and comparing letters from longer string to shorter string's letters at hte same index, when one character is evaluated to be bigger than the other, can stop comparison and return
+   
+    // returns true when str1 is bigger, returns false when st2 is bigger
+function compareStrings(str1, str2) {
+    let longerStr = (str1.length >= str2.length) ? str1 : str2;
+
+    for (let i = 0; i < longerStr.length; i++) {
+
+        if (!str1[i]) return false; // str1 is not bigger than str2 because str1 is empty
+
+        if (!str2[i]) return true; // str1 is bigger than str2 because str2 is empty
+        
+        if (str1[i] >= str2[i]) return true; // str1 is bigger than /equal to str2, eval at same index
+
+        if (str1[i] < str2[i]) return false; // str1 is smaller than str2, eval at same index
+    };
+};
+
+const sortedArrayOfStrings = sortArrayOfStrings(arrayOfStrings);
+
+console.log(sortedArrayOfStrings);
+
+// Big O Time Complexity
+
+// Step One (quickSortString function) - sorting each string in the array
+    // we loop through every element in the array -> that would be O(A) where A is the length of the array of strings
+    // at each element we sort a string -> O(S log S) where S is the length of the longest string, the average case for quickSort is S log S
+// Time Complexity of Step One is O (A*S log S)
+
+// Step Two (quickSortArr function) - sorting the new array of sorted strings, when we iterate though the lnegth of the array, we apply compareStrings function to evaluate which string is bigger (can't rely on simple character comparison)
+    // average case of quickSort is S log S -> O (A log A) where A is the lenth of the array of sorted strings (would be the same as the array of unsorted)
+    // there is comparison of strings operation for each ieration which is O(S) where S is the length of the longest sorted string (would be the same as length of the longest unsorted string)
+// Time Complexity of Step Two is (S*A log A)
+
+// Step One and Two are performed consecutively - we add two time complexities together
+
+// Time Complexity of the sortArrayOfStrings algorithm is O(A*S log S + S*A log A) = O(A*S * (log S + Log A)) // constant factor 2 is ignored
+
