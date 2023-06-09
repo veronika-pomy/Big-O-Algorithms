@@ -6,7 +6,6 @@ function fibonacciMemo (n) {
 
     for (let i = 2; i < n; i++) {
         fib[i] = fibNumberMemo(i, memo);
-        console.log(fib);
     };
 
     function fibNumberMemo(number, memorized) {

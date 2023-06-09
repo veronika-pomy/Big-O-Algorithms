@@ -51,3 +51,18 @@ console.log(`Number at position ${seventhPosition} in a Fibonacci sequence is ${
 
     //     return current;
     // };
+
+// RECURSIVE SOLUTION OPTIMIZED FOR O(N) TIME COMPLEXITY USING CACHE
+
+    // function fibCache (index, cache) {
+    //     cache = cache || [];
+    //     if(cache[index]) return cache[index];
+    //     if (index <= 2 ) return 1;
+    //     cache[index] = fibCache(index - 1, cache) + fibCache(index - 2, cache);
+    //     return cache[index];
+    // };
+
+    // console.log(fibCache(7));
+    //     //should return 13
+    // console.log(fibCache(6));
+    //     //should return 8
