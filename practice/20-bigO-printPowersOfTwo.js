@@ -45,6 +45,7 @@ powersOfTwo(number);
     // The number of steps is the number to which power we can take two until we reach a requested number
     // log2(50) is approximately 5 or 6 rounded up -> the number of values printed is 6 for example of 50
     // Hence Time Complexity is O(log n)
+
     // function powerOfTwoLoop (n) {
     //     for (let i = 1; i <= n; i = i*2) {
     //         if (n === 1) {
