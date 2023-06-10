@@ -44,6 +44,6 @@ console.log(fibSequence);
         //...
         // fib(n)
 // at each function call we do constant work - looking up, summing, storing, and returing 
-// we do the work N number of times (from the for loop
+// we do the work N number of times (from the for loop)
 // Total runtime is O(N)
 

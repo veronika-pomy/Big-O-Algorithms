@@ -66,3 +66,13 @@ console.log(`Number at position ${seventhPosition} in a Fibonacci sequence is ${
     //     //should return 13
     // console.log(fibCache(6));
     //     //should return 8
+
+
+// General Fibonacci Explanation
+    // Since each number in the Fib sequence is the sum of the previous two, F function to calculate a number at N position, looks like this:
+    
+        // Fn = Fn-1 + Fn-2
+    
+    // The base case for recursion is 
+
+        // F0 = 0 and F1 = 1
