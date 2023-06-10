@@ -41,7 +41,7 @@ powersOfTwo(number);
 
 // Therefore, Big O runtime is 0(log n)
 
-// Iterative approach gets the same result in the same logarithmic time using iterative approach
+// Iterative approach gets the same result in the same logarithmic time
     // The number of steps is the number to which power we can take two until we reach a requested number
     // log2(50) is approximately 5 or 6 rounded up -> the number of values printed is 6 for example of 50
     // Hence Time Complexity is O(log n)
