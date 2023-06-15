@@ -74,7 +74,7 @@ function compareStrings(str1, str2) {
 
         if (!str2[i]) return true; // str1 is bigger than str2 because str2 is empty
         
-        if (str1[i] >= str2[i]) return true; // str1 is bigger than /equal to str2, eval at same index
+        if (str1[i] >= str2[i]) return true; // str1 is bigger than / equal to str2, eval at same index
 
         if (str1[i] < str2[i]) return false; // str1 is smaller than str2, eval at same index
     };
