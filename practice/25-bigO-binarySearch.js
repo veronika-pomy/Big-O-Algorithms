@@ -13,8 +13,6 @@ function binarySearch(sortedArray, target) {
     let rightIndex = sortedArray.length - 1;
     let leftIndex = 0;
 
-    
-
     while (leftIndex <= rightIndex) {
 
         let mid = Math.floor((leftIndex + rightIndex)/2);
@@ -51,10 +49,12 @@ console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} 
 // const resultOneRecursive = binarySearch(sortedArray, targetOne);
 
 // console.log(`Index of the target value ${targetOne} in the array ${sortedArray} is ${resultOneRecursive}.`);
+// should print 0
 
 // const resultTwoRecursive = binarySearch(sortedArray, targetTwo);
 
 // console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} is ${resultTwoRecursive}.`);
+// should print -1
 
 // Time Complexity Explanation 
     // Every step of the algorithm cuts the number of problem steps in half 
@@ -84,3 +84,9 @@ console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} 
         // k = log N
 
 // The runtime complexity is O (log N)
+
+// Both iterative and recursive solutions have the same time compleity O(log N)
+
+// For space complexity Big O;
+    // Iterative solution is more efficent because it uses O(1) space - constant space for function call and varibale allocation
+    // Recurive approach will take (log N)
