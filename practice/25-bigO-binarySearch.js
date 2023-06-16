@@ -1,7 +1,5 @@
 const sortedArray =  [
-    1, 2, 2, 3, 3,
-    3, 4, 6, 6, 8,
-    9
+    1, 2, 3, 4, 6, 8, 9
 ];
 
 const targetOne = 1;
@@ -42,18 +40,32 @@ console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} 
 
 // Recurcive Approach
 
-// function binarySearchRecurcive (sortedArray, target) {
+function binarySearchRecursive (sortedArray, target) {
+    return searchHelper(sortedArray, target, 0, sortedArray.length - 1);
+};
 
-// };
+function searchHelper(sortedArray, target, leftIndex, rightIndex) {
+    if (leftIndex > rightIndex) return -1; // value not found
 
-// const resultOneRecursive = binarySearch(sortedArray, targetOne);
+    let middleIndex = Math.floor((leftIndex + rightIndex)/2);
 
-// console.log(`Index of the target value ${targetOne} in the array ${sortedArray} is ${resultOneRecursive}.`);
+    if (sortedArray[middleIndex] === target) return middleIndex; // return index of array at target value
+
+    if (sortedArray[middleIndex] > target) {
+        return searchHelper(sortedArray, target, leftIndex, middleIndex -1);
+    } else {
+        return searchHelper(sortedArray, target, middleIndex + 1, rightIndex);
+    };
+};
+
+const resultOneRecursive = binarySearchRecursive(sortedArray, targetOne);
+
+console.log(`Index of the target value ${targetOne} in the array ${sortedArray} is ${resultOneRecursive}.`);
 // should print 0
 
-// const resultTwoRecursive = binarySearch(sortedArray, targetTwo);
+const resultTwoRecursive = binarySearchRecursive(sortedArray, targetTwo);
 
-// console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} is ${resultTwoRecursive}.`);
+console.log(`Index of the target value ${targetTwo} in the array ${sortedArray} is ${resultTwoRecursive}.`);
 // should print -1
 
 // Time Complexity Explanation 
